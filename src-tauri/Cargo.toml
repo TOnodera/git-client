@@ -2,7 +2,7 @@
 name = "rust-git-client"
 version = "0.0.0"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["t.onodera"]
 license = ""
 repository = ""
 edition = "2021"

@@ -1,5 +1,4 @@
-pub mod Test {
-    pub fn hello() -> &'static str {
-        "hello"
-    }
-}
+mod application;
+mod domain;
+mod infrastructure;
+pub mod presentation;
