@@ -862,6 +862,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "git-api"
+version = "0.1.0"
+
+[[package]]
 name = "glib"
 version = "0.15.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2107,6 +2111,7 @@ dependencies = [
 name = "rust-git-client"
 version = "0.0.0"
 dependencies = [
+ "git-api",
  "serde",
  "serde_json",
  "tauri",

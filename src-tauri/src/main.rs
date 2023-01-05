@@ -3,15 +3,17 @@
     windows_subsystem = "windows"
 )]
 
+use git_api;
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+    let test = git_api::Test::hello();
+    format!(
+        "Hello, {}! You've been greeted from Rust! hoge,{}",
+        name, test
+    )
 }
-
-mod api;
-mod core;
-mod types;
 
 fn main() {
     tauri::Builder::default()
