@@ -1,9 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    application::input_to_command,
-    domain::{types::Result, Branch, Env, EnvTrait},
-};
+use crate::domain::{types::Result, Branch, Env, EnvTrait};
 
 pub trait InputData {
     // Empty
@@ -13,12 +10,14 @@ pub trait OutputData {
     // Empty
 }
 
-pub struct SendGitCommand;
+pub struct SendGitCommand {
+    env: Env,
+}
 impl SendGitCommand {
-    pub fn new() -> Self {
-        Self
+    pub fn new(env: Env) -> Self {
+        Self { env }
     }
-    pub fn get_branches(env: Env) -> Result<Vec<Branch>> {
+    pub fn get_branches() -> Result<Vec<Branch>> {
         todo!()
     }
 }

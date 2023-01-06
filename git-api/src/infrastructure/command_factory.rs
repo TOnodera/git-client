@@ -1,8 +1,8 @@
-use crate::domain::command::GitBranchCommand;
+use crate::application::CommandFactory;
 use crate::domain::types::Result;
 use crate::presentation::GitBranchInput;
 
-use super::CommandFactory;
+use super::command::GitBranchCommand;
 
 pub struct ConvertToGitBranchCommand;
 impl CommandFactory for ConvertToGitBranchCommand {

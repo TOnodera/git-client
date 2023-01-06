@@ -1,9 +1,19 @@
 use crate::{
     domain::{types::Result, CommandTrait},
-    presentation::InputData,
+    presentation::{InputData, OutputData},
 };
 
-pub mod input_to_command;
+pub mod git_branch_usecase;
+
+pub trait UsecaseTrait
+where
+    Self::OutputData: OutputData,
+    Self::Command: CommandTrait,
+{
+    type Command;
+    type OutputData;
+    fn accept_command(&self, command: Self::Command) -> Result<Self::OutputData>;
+}
 
 pub trait CommandFactory
 where

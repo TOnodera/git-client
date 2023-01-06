@@ -4,7 +4,6 @@ use chrono::serde::ts_seconds::deserialize as from_ts;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-pub mod command;
 pub mod handler;
 pub mod types;
 
@@ -44,7 +43,7 @@ where
 {
     type Output;
     fn new() -> Self;
-    fn execute() -> Result<Self::Output>;
+    fn execute(&self) -> Result<Self::Output>;
 }
 
 // Gitコマンド
@@ -59,14 +58,14 @@ pub trait EnvTrait {
 }
 
 pub struct Env {
-    project_root: String,
+    git_dir: String,
     is_test: bool,
 }
 
 impl EnvTrait for Env {
-    fn new(project_root: &str) -> Self {
+    fn new(git_dir: &str) -> Self {
         Self {
-            project_root: project_root.to_string(),
+            git_dir: git_dir.to_string(),
             is_test: false,
         }
     }
