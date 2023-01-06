@@ -4,8 +4,8 @@ use crate::presentation::GitBranchInput;
 
 use super::command::GitBranchCommand;
 
-pub struct ConvertToGitBranchCommand;
-impl CommandFactory for ConvertToGitBranchCommand {
+pub struct GitBranchCommandFactory;
+impl CommandFactory for GitBranchCommandFactory {
     type CommandTrait = GitBranchCommand;
     type InputData = GitBranchInput;
     fn new() -> Self {

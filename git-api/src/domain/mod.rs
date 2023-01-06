@@ -12,6 +12,13 @@ pub mod types;
 pub struct CommitHash {
     hash: String,
 }
+impl CommitHash {
+    pub fn new(hash: &str) -> Self {
+        Self {
+            hash: hash.to_string(),
+        }
+    }
+}
 
 // コミット情報オブジェクト
 #[derive(Debug, Deserialize, Serialize)]
@@ -34,6 +41,14 @@ pub struct CommitInfo {
 pub struct Branch {
     pub name: String,
     pub head: CommitHash,
+}
+impl Branch {
+    pub fn new(name: &str, head: &str) -> Self {
+        Self {
+            name: name.to_string(),
+            head: CommitHash::new(head),
+        }
+    }
 }
 
 // コマンドトレイト
