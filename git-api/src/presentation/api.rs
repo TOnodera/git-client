@@ -1,6 +1,6 @@
 use crate::{
     application::{git_branch_usecase::GitBranchUsecase, CommandFactory, UsecaseTrait},
-    domain::{types::Result, Branch, Env},
+    domain::{types::Result, value::Env, Branch},
     infrastructure::command_factory::GitBranchCommandFactory,
 };
 
@@ -21,7 +21,7 @@ impl SendGitCommandApi {
 
 #[cfg(test)]
 mod SendGitCommandApiTest {
-    use crate::domain::{types::Result, Env, EnvTrait};
+    use crate::domain::{types::Result, value::Env, EnvTrait};
 
     use super::SendGitCommandApi;
 
