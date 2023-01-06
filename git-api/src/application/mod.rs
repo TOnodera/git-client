@@ -7,13 +7,13 @@ pub mod git_branch_usecase;
 
 pub trait UsecaseTrait
 where
+    Self::InputData: InputData,
     Self::OutputData: OutputData,
-    Self::Command: CommandTrait,
 {
-    type Command;
+    type InputData;
     type OutputData;
     fn new() -> Self;
-    fn accept_command(&self, command: Self::Command) -> Result<Self::OutputData>;
+    fn run(&self, input: Self::InputData) -> Result<Self::OutputData>;
 }
 
 pub trait CommandFactory
