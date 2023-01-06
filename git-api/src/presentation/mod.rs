@@ -23,6 +23,8 @@ impl SendGitCommand {
     }
 }
 
+pub struct GitBranchInput;
+impl InputData for GitBranchInput {}
 #[derive(Debug, Clone, Serialize)]
 pub struct GitBranchOutput {
     pub name: String,

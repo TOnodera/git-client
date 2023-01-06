@@ -38,9 +38,13 @@ pub struct Branch {
 }
 
 // コマンドトレイト
-pub trait CommandTrait<T: OutputData> {
+pub trait CommandTrait
+where
+    Self::Output: OutputData,
+{
+    type Output;
     fn new() -> Self;
-    fn execute() -> Result<T>;
+    fn execute() -> Result<Self::Output>;
 }
 
 // Gitコマンド
