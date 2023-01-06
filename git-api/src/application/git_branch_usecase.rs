@@ -1,8 +1,6 @@
 use crate::{
-    domain::{handler::Handler, CommandTrait},
-    infrastructure::command::GitBranchCommand,
-    infrastructure::handler::GitBranchComandHandler,
-    presentation::GitBranchCommandOutput,
+    domain::handler::Handler, infrastructure::command::GitBranchCommand,
+    infrastructure::handler::GitBranchComandHandler, presentation::GitBranchCommandOutput,
 };
 
 use super::UsecaseTrait;
