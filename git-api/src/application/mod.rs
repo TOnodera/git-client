@@ -12,6 +12,7 @@ where
 {
     type Command;
     type OutputData;
+    fn new() -> Self;
     fn accept_command(&self, command: Self::Command) -> Result<Self::OutputData>;
 }
 
