@@ -10,8 +10,8 @@ pub trait OutputData {
     // Empty
 }
 
-pub struct GitBranchInput;
-impl InputData for GitBranchInput {}
+pub type GitBranchCommandInput = Option<()>;
+impl InputData for GitBranchCommandInput {}
 
 pub type GitBranchCommandOutput = Vec<Branch>;
 impl OutputData for GitBranchCommandOutput {}

@@ -1,7 +1,6 @@
 use crate::{
-    application::{git_branch_usecase::GitBranchUsecase, CommandFactory, UsecaseTrait},
+    application::{git_branch_usecase::GitBranchUsecase, UsecaseTrait},
     domain::{types::Result, value::Env, Branch},
-    infrastructure::command_factory::GitBranchCommandFactory,
 };
 
 pub struct SendGitCommandApi {
@@ -12,9 +11,7 @@ impl SendGitCommandApi {
         Self { env }
     }
     pub fn get_branches(&self) -> Result<Vec<Branch>> {
-        let factory = GitBranchCommandFactory::new();
-        let command = factory.create(None)?;
-        let result = GitBranchUsecase::new().accept_command(command)?;
+        let result = GitBranchUsecase::new().run(None)?;
         Ok(result)
     }
 }

@@ -1,23 +1,23 @@
 use crate::{
-    domain::handler::Handler, infrastructure::command::GitBranchCommand,
-    infrastructure::handler::GitBranchComandHandler, presentation::GitBranchCommandOutput,
+    domain::{handler::Handler, types::Result},
+    infrastructure::{command_factory::GitBranchCommandFactory, handler::GitBranchComandHandler},
+    presentation::{GitBranchCommandInput, GitBranchCommandOutput},
 };
 
-use super::UsecaseTrait;
+use super::{CommandFactory, UsecaseTrait};
 
 pub struct GitBranchUsecase;
 
 impl UsecaseTrait for GitBranchUsecase {
-    type Command = GitBranchCommand;
+    type InputData = GitBranchCommandInput;
     type OutputData = GitBranchCommandOutput;
 
     fn new() -> Self {
         Self
     }
-    fn accept_command(
-        &self,
-        command: Self::Command,
-    ) -> crate::domain::types::Result<Self::OutputData> {
+    fn run(&self, _: Self::InputData) -> Result<Self::OutputData> {
+        let factory = GitBranchCommandFactory::new();
+        let command = factory.create(None)?;
         let handler = GitBranchComandHandler::new();
         Ok(handler.handle(command)?)
     }
