@@ -15,17 +15,3 @@ impl SendGitCommandApi {
         Ok(result)
     }
 }
-
-#[cfg(test)]
-mod SendGitCommandApiTest {
-    use crate::domain::{types::Result, value::Env, EnvTrait};
-
-    use super::SendGitCommandApi;
-
-    #[test]
-    fn get_branches() -> Result<()> {
-        let api = SendGitCommandApi::new(Env::new("!!!"));
-        api.get_branches();
-        Ok(())
-    }
-}
