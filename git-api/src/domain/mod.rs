@@ -36,3 +36,8 @@ pub trait EnvTrait {
     fn new(project_root: &str) -> Self;
     fn is_test(&self) -> bool;
 }
+
+// ドメインサービストレイト
+pub trait DomainService {
+    // Empty
+}

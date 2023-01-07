@@ -1,8 +1,4 @@
 pub mod command;
 pub mod command_factory;
+pub mod domain_service;
 pub mod handler;
-pub mod service;
-
-pub trait DomainService {
-    // Empty
-}

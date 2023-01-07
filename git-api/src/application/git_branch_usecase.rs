@@ -1,6 +1,10 @@
 use crate::{
     domain::{handler::Handler, types::Result},
-    infrastructure::{command_factory::GitBranchCommandFactory, handler::GitBranchComandHandler},
+    infrastructure::{
+        command_factory::GitBranchCommandFactory,
+        domain_service::git_branch_command_domain_service::GitBranchCommandDomainService,
+        handler::GitBranchComandHandler,
+    },
     presentation::{GitBranchCommandInput, GitBranchCommandOutput},
 };
 
@@ -18,7 +22,8 @@ impl UsecaseTrait for GitBranchUsecase {
     fn run(&self, _: Self::InputData) -> Result<Self::OutputData> {
         let factory = GitBranchCommandFactory::new();
         let command = factory.create(None)?;
-        let handler = GitBranchComandHandler::new();
+        let service = GitBranchCommandDomainService::new();
+        let handler = GitBranchComandHandler::new(Some(service))?;
         Ok(handler.handle(command)?)
     }
 }
