@@ -32,6 +32,8 @@ pub struct CommitInfo {
     commit_date: DateTime<Utc>,
     comment: Option<String>,
 }
+
+#[derive(Clone)]
 pub struct Env {
     git_dir: String,
     is_test: bool,

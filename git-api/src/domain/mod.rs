@@ -3,6 +3,7 @@ use crate::domain::types::Result;
 use crate::presentation::OutputData;
 
 pub mod command;
+pub mod error;
 pub mod handler;
 pub mod types;
 pub mod value;
@@ -25,9 +26,11 @@ impl Branch {
 pub trait CommandTrait
 where
     Self::Output: OutputData,
+    Self::Env: EnvTrait,
 {
     type Output;
-    fn new() -> Self;
+    type Env;
+    fn new(env: Self::Env) -> Self;
     fn execute(&self) -> Result<Self::Output>;
 }
 
@@ -35,4 +38,9 @@ where
 pub trait EnvTrait {
     fn new(project_root: &str) -> Self;
     fn is_test(&self) -> bool;
+}
+
+// ドメインサービストレイト
+pub trait DomainService {
+    // Empty
 }
