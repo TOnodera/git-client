@@ -27,10 +27,12 @@ pub trait CommandTrait
 where
     Self::Output: OutputData,
     Self::Env: EnvTrait,
+    Self::DomainService: DomainService,
 {
     type Output;
     type Env;
-    fn new(env: Self::Env) -> Self;
+    type DomainService;
+    fn new(env: Self::Env, service: Self::DomainService) -> Self;
     fn execute(&self) -> Result<Self::Output>;
 }
 

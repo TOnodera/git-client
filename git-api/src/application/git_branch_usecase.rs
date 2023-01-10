@@ -23,10 +23,10 @@ impl UsecaseTrait for GitBranchUsecase {
         Self { env }
     }
     fn run(&self, _: Self::InputData) -> Result<Self::OutputData> {
-        let factory = GitBranchCommandFactory::new(self.env.clone());
-        let command = factory.create(None)?;
         let service = GitBranchCommandDomainService::new();
-        let handler = GitBranchComandHandler::new(Some(service))?;
+        let factory = GitBranchCommandFactory::new(self.env.clone(),service);
+        let command = factory.create(None)?;
+        let handler = GitBranchComandHandler::new();
         Ok(handler.handle(command)?)
     }
 }
