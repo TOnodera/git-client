@@ -3,6 +3,7 @@ use crate::domain::types::Result;
 use crate::presentation::OutputData;
 
 pub mod command;
+pub mod error;
 pub mod handler;
 pub mod types;
 pub mod value;

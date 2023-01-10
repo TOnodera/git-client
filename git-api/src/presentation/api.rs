@@ -11,7 +11,7 @@ impl SendGitCommandApi {
         Self { env }
     }
     pub fn get_branches(&self) -> Result<Vec<Branch>> {
-        let result = GitBranchUsecase::new().run(None)?;
+        let result = GitBranchUsecase::new(self.env).run(None)?;
         Ok(result)
     }
 }

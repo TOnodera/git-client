@@ -1,5 +1,5 @@
 use crate::{
-    domain::{types::Result, CommandTrait},
+    domain::{types::Result, CommandTrait, EnvTrait},
     presentation::{InputData, OutputData},
 };
 
@@ -9,10 +9,12 @@ pub trait UsecaseTrait
 where
     Self::InputData: InputData,
     Self::OutputData: OutputData,
+    Self::Env: EnvTrait,
 {
+    type Env;
     type InputData;
     type OutputData;
-    fn new() -> Self;
+    fn new(env: Self::Env) -> Self;
     fn run(&self, input: Self::InputData) -> Result<Self::OutputData>;
 }
 

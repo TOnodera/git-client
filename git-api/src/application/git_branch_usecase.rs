@@ -1,5 +1,5 @@
 use crate::{
-    domain::{handler::Handler, types::Result},
+    domain::{handler::Handler, types::Result, value::Env},
     infrastructure::{
         command_factory::GitBranchCommandFactory,
         domain_service::git_branch_command_domain_service::GitBranchCommandDomainService,
@@ -10,20 +10,23 @@ use crate::{
 
 use super::{CommandFactory, UsecaseTrait};
 
-pub struct GitBranchUsecase;
+pub struct GitBranchUsecase {
+    env: Env,
+}
 
 impl UsecaseTrait for GitBranchUsecase {
+    type Env = Env;
     type InputData = GitBranchCommandInput;
     type OutputData = GitBranchCommandOutput;
 
-    fn new() -> Self {
-        Self
+    fn new(env: Self::Env) -> Self {
+        Self { env }
     }
     fn run(&self, _: Self::InputData) -> Result<Self::OutputData> {
         let factory = GitBranchCommandFactory::new();
         let command = factory.create(None)?;
         let service = GitBranchCommandDomainService::new();
-        let handler = GitBranchComandHandler::new(Some(service))?;
+        let handler = GitBranchComandHandler::new(self.env, Some(service))?;
         Ok(handler.handle(command)?)
     }
 }
