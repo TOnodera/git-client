@@ -5,7 +5,7 @@ impl GitBranchCommandDomainService {
     pub fn new() -> Self {
         Self
     }
-    pub fn output(command_result: &str) -> Vec<Branch> {
+    pub fn output(&self, command_result: &str) -> Vec<Branch> {
         todo!()
     }
 }

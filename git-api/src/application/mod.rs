@@ -22,9 +22,11 @@ pub trait CommandFactory
 where
     Self::CommandTrait: CommandTrait,
     Self::InputData: InputData,
+    Self::Env: EnvTrait,
 {
     type CommandTrait;
     type InputData;
-    fn new() -> Self;
+    type Env;
+    fn new(env: Self::Env) -> Self;
     fn create(&self, input: Option<Self::InputData>) -> Result<Self::CommandTrait>;
 }

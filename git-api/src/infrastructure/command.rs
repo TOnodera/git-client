@@ -1,17 +1,20 @@
 use std::vec;
 
 use crate::{
-    domain::{types::Result, Branch, CommandTrait},
+    domain::{types::Result, value::Env, Branch, CommandTrait},
     presentation::GitBranchCommandOutput,
 };
 
-pub struct GitBranchCommand;
+pub struct GitBranchCommand {
+    env: Env,
+}
 impl CommandTrait for GitBranchCommand {
     type Output = GitBranchCommandOutput;
-    fn new() -> Self {
-        Self
+    type Env = Env;
+    fn new(env: Self::Env) -> Self {
+        Self { env }
     }
     fn execute(&self) -> Result<Self::Output> {
-        Ok(vec![Branch::new("test", "abcdefg")])
+        todo!()
     }
 }

@@ -26,9 +26,11 @@ impl Branch {
 pub trait CommandTrait
 where
     Self::Output: OutputData,
+    Self::Env: EnvTrait,
 {
     type Output;
-    fn new() -> Self;
+    type Env;
+    fn new(env: Self::Env) -> Self;
     fn execute(&self) -> Result<Self::Output>;
 }
 
