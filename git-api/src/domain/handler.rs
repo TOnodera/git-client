@@ -1,17 +1,15 @@
 use crate::presentation::OutputData;
 
-use super::{types::Result, CommandTrait, DomainService, EnvTrait};
+use super::{types::Result, CommandTrait};
 
 pub trait Handler
 where
     Self::Command: CommandTrait,
     Self::OutputData: OutputData,
-    Self::DomainService: DomainService,
 {
-    type DomainService;
     type Command;
     type OutputData;
-    fn new(service: Option<Self::DomainService>) -> Result<Self>
+    fn new() -> Self
     where
         Self: Sized;
     fn handle(&self, command: Self::Command) -> Result<Self::OutputData>;

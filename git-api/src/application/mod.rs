@@ -1,5 +1,5 @@
 use crate::{
-    domain::{types::Result, CommandTrait, EnvTrait},
+    domain::{types::Result, CommandTrait, DomainService, EnvTrait},
     presentation::{InputData, OutputData},
 };
 
@@ -23,10 +23,12 @@ where
     Self::CommandTrait: CommandTrait,
     Self::InputData: InputData,
     Self::Env: EnvTrait,
+    Self::DomainService: DomainService,
 {
     type CommandTrait;
     type InputData;
     type Env;
-    fn new(env: Self::Env) -> Self;
+    type DomainService;
+    fn new(env: Self::Env, service: Self::DomainService) -> Self;
     fn create(&self, input: Option<Self::InputData>) -> Result<Self::CommandTrait>;
 }

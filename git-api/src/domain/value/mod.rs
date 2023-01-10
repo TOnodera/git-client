@@ -35,7 +35,7 @@ pub struct CommitInfo {
 
 #[derive(Clone)]
 pub struct Env {
-    git_dir: String,
+    pub git_dir: String,
     is_test: bool,
 }
 
