@@ -9,15 +9,18 @@ pub mod types;
 pub mod value;
 
 // ブランチオブジェクト
+#[derive(Clone)]
 pub struct Branch {
     pub name: String,
     pub head: CommitHash,
+    pub is_current: bool,
 }
 impl Branch {
     pub fn new(name: &str, head: &str) -> Self {
         Self {
             name: name.to_string(),
             head: CommitHash::new(head),
+            is_current: false,
         }
     }
 }

@@ -4,9 +4,9 @@ use serde::{Deserialize, Serialize};
 
 use super::EnvTrait;
 // コミットハッシュオブジェクト
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct CommitHash {
-    hash: String,
+    pub hash: String,
 }
 impl CommitHash {
     pub fn new(hash: &str) -> Self {
