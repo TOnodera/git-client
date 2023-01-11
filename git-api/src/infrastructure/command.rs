@@ -19,13 +19,15 @@ impl CommandTrait for GitBranchCommand {
     fn execute(&self) -> Result<Self::Output> {
         // git branch実行
         let result = std::process::Command::new("git")
-            .arg(format!("branch --git-dir={}", self.env.git_dir))
+            .arg(format!("--git-dir={}", self.env.git_dir))
+            .arg("branch")
             .output()?;
         // エラーの場合は早期リターン
         if !result.status.success() {
             return Err(Box::new(AppError::CommandError));
         }
         // パース
-        Ok(self.service.output(result.stdout))
+        let parsed = self.service.parse(result.stdout)?;
+        Ok(parsed)
     }
 }
