@@ -16,11 +16,11 @@ pub struct Branch {
     pub is_current: bool,
 }
 impl Branch {
-    pub fn new(name: &str, head: &str) -> Self {
+    pub fn new(name: &str, head: &str, is_current: bool) -> Self {
         Self {
             name: name.to_string(),
             head: CommitHash::new(head),
-            is_current: false,
+            is_current,
         }
     }
 }

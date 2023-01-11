@@ -27,6 +27,7 @@ impl CommandTrait for GitBranchCommand {
             return Err(Box::new(AppError::CommandError));
         }
         // パース
-        Ok(self.service.output(result.stdout))
+        let parsed = self.service.parse(result.stdout)?;
+        Ok(parsed)
     }
 }
