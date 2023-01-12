@@ -21,6 +21,7 @@ impl CommandTrait for GitBranchCommand {
         let result = std::process::Command::new("git")
             .arg(format!("--git-dir={}", self.env.git_dir))
             .arg("branch")
+            .arg("-v")
             .output()?;
         // エラーの場合は早期リターン
         if !result.status.success() {

@@ -24,7 +24,7 @@ impl UsecaseTrait for GitBranchUsecase {
     }
     fn run(&self, _: Self::InputData) -> Result<Self::OutputData> {
         let service = GitBranchCommandDomainService::new();
-        let factory = GitBranchCommandFactory::new(self.env.clone(),service);
+        let factory = GitBranchCommandFactory::new(self.env.clone(), service);
         let command = factory.create(None)?;
         let handler = GitBranchComandHandler::new();
         Ok(handler.handle(command)?)
