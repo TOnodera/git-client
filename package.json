@@ -7,20 +7,26 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "fmt": "node_modules/.bin/prettier"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.1.0",
+    "prettier": "^2.8.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@tauri-apps/api": "^1.1.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.1.0",
     "@types/node": "^18.7.10",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "@vitejs/plugin-react": "^2.0.0",
+    "eslint": "^8.32.0",
+    "eslint-plugin-react": "^7.32.0",
     "typescript": "^4.6.4",
-    "vite": "^3.0.2",
-    "@tauri-apps/cli": "^1.1.0"
+    "vite": "^3.0.2"
   }
 }
