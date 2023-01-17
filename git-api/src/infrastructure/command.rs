@@ -32,3 +32,31 @@ impl CommandTrait for GitBranchCommand {
         Ok(parsed)
     }
 }
+
+pub struct GitBranchMockCommand {
+    env: Env,
+    service: GitBranchCommandDomainService,
+}
+impl CommandTrait for GitBranchMockCommand {
+    type Output = GitBranchCommandOutput;
+    type Env = Env;
+    type DomainService = GitBranchCommandDomainService;
+    fn new(env: Self::Env, service: Self::DomainService) -> Self {
+        Self { env, service }
+    }
+    fn execute(&self) -> Result<Self::Output> {
+        // git branch実行
+        let result = std::process::Command::new("git")
+            .arg(format!("--git-dir={}", self.env.git_dir))
+            .arg("branch")
+            .arg("-v")
+            .output()?;
+        // エラーの場合は早期リターン
+        if !result.status.success() {
+            return Err(Box::new(AppError::CommandError));
+        }
+        // パース
+        let parsed = self.service.parse(result.stdout)?;
+        Ok(parsed)
+    }
+}
